@@ -1,0 +1,29 @@
+$reportDir = ".\File_Report_Folder"
+if (!(Test-Path -Path $reportDir)) {
+    New-Item -ItemType Directory -Path $reportDir | Out-Null
+}
+$outputPath = Join-Path $reportDir "all_files_by_type.txt"
+
+Write-Host "Files kiyawamin pawathina wada karamin..." -ForegroundColor Yellow
+$files = Get-ChildItem -File
+
+$sb = [System.Text.StringBuilder]::new()
+[void]$sb.AppendLine("Total Files Count: $($files.Count)")
+[void]$sb.AppendLine("Generated Date: $(Get-Date)")
+[void]$sb.AppendLine("=" * 60)
+
+$grouped = $files | Group-Object Extension
+
+foreach ($g in $grouped) {
+    $ext = if ($g.Name) { $g.Name } else { "No Extension" }
+    [void]$sb.AppendLine("")
+    [void]$sb.AppendLine("--------------------------------------------------")
+    [void]$sb.AppendLine("File Type: $ext  (Total: $($g.Count))")
+    [void]$sb.AppendLine("--------------------------------------------------")
+    foreach ($f in $g.Group) {
+        [void]$sb.AppendLine($f.Name)
+    }
+}
+
+[System.IO.File]::WriteAllText($outputPath, $sb.ToString(), [System.Text.UTF8Encoding]::new())
+Write-Host "Success! File list eka save una: $outputPath" -ForegroundColor Green
