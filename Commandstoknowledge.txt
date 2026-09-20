@@ -14,3 +14,23 @@ Get-ChildItem -Recurse -File | ForEach-Object {
 for /d %i in (*) do rmdir /s /q "%i"
 
 //**For delete sub folder after use,**//
+
+
+
+cd C:\Users\Ano
+mkdir GuardXChild
+cd GuardXChild
+mkdir app
+mkdir app\src
+mkdir app\src\main
+mkdir app\src\main\java
+mkdir app\src\main\java\com
+mkdir app\src\main\java\com\monitor
+mkdir app\src\main\java\com\monitor\guardx
+mkdir app\src\main\java\com\monitor\guardx\child
+mkdir app\src\main\res
+mkdir app\src\main\res\layout
+mkdir app\src\main\res\values
+mkdir app\src\main\res\mipmap-hdpi
+mkdir gradle
+mkdir gradle\wrapper
