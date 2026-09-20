@@ -1,0 +1,16 @@
+Get-ChildItem -Recurse -File | ForEach-Object {
+    $dest = Join-Path $PWD $_.Name
+    $i = 1
+    while (Test-Path $dest) {
+        $dest = Join-Path $PWD ($_.BaseName + "_$i" + $_.Extension)
+        $i++
+    }
+    Move-Item $_.FullName -Destination $dest
+}
+
+
+**//its powershell command for take out all files,docs etc.. out of folder & list All together to one folder,//**
+
+for /d %i in (*) do rmdir /s /q "%i"
+
+//**For delete sub folder after use,**//
