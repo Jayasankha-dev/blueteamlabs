@@ -4,7 +4,7 @@ if (!(Test-Path -Path $reportDir)) {
 }
 $outputPath = Join-Path $reportDir "all_files_by_type.txt"
 
-Write-Host "Files kiyawamin pawathina wada karamin..." -ForegroundColor Yellow
+Write-Host "Reading and processing files..." -ForegroundColor Yellow
 $files = Get-ChildItem -File
 
 $sb = [System.Text.StringBuilder]::new()
@@ -26,4 +26,4 @@ foreach ($g in $grouped) {
 }
 
 [System.IO.File]::WriteAllText($outputPath, $sb.ToString(), [System.Text.UTF8Encoding]::new())
-Write-Host "Success! File list eka save una: $outputPath" -ForegroundColor Green
+Write-Host "Success! File list saved: $outputPath" -ForegroundColor Green
